@@ -1,0 +1,46 @@
+<!-- css -->
+<link rel="stylesheet" href="/css/public/header.css">
+
+<!-- html -->
+<header class="site-header">
+	<div class="left">
+		<nav>
+			<ul>
+				<li>
+					<a href="/">Home</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div class="center">
+		<nav>
+			<ul>
+				<li class="search">
+					<% if (isLoggedIn) { %>
+						<form action="/students/search" method="GET">
+							<input type="search" placeholder="search..." required name="studentSearch" maxlength="35">
+						</form>
+					<% } %>
+				</li>
+				<% for (let link of links) {%>
+					<li>
+						<a href="<%= link.link %>"><%= link.text %></a>
+					</li>
+				<% }%>
+			</ul>
+		</nav>
+	</div>
+	<div class="right">
+		<nav>
+			<ul>
+				<li>
+					<% if(isLoggedIn) {%>
+						<a href="/logout">Logout</a>
+					<% } else {%>
+						<a href="/login">Login</a>
+					<% } %>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
