@@ -20,18 +20,16 @@ app.use( auth );
 // load modules
 const modules = require('./modules');
 app.use( modules );
-// app.get('/admin', (req, res) => {
-// 	res.render('index.html', {
-// 		links: [],
-// 		html: 'private/admin.html',
-// 		data: null
-// 	})
-// })
+
+app.get('/admin', (req, res) => {
+	res.render('index.html', {
+        header: "private/header.html",
+        headerData: null,
+		links: [],
+		html: 'private/admin.html',
+		data: null
+	})
+})
 
 
 app.listen(PORT, () => console.log('http://localhost:' + PORT));
-
-
-
-
-
