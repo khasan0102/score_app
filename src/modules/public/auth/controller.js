@@ -1,6 +1,6 @@
 const model = require('./model.js')
-const { sign } = require('../../lib/jwt.js')
-const htmlController = require("../../lib/htmlController.js");
+const { sign } = require('../../../lib/jwt.js')
+const htmlController = require("../../../lib/htmlController");
 
 const GET = (req, res) => {
 	res.render(...htmlController(
@@ -13,7 +13,7 @@ const GET = (req, res) => {
 const POST = async (req, res) => {
 	let user = await model.validate( req.body )
 	if(user) {
-		res.cookie('token', sign(user), { maxAge: 100000 })
+		res.cookie('token', sign(user), { maxAge: 5000000 })
 		   .redirect('/groups')
 	} else {
 		res.render(...htmlController(

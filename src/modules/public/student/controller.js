@@ -1,5 +1,5 @@
 const model = require('./model.js')
-const htmlController = require("../../lib/htmlController");
+const htmlController = require("../../../lib/htmlController");
 
 const STUDENTS = async (req, res) => {
 	res.render(

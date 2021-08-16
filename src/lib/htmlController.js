@@ -35,6 +35,11 @@ module.exports = (userInfo, body, header) => {
         data = {
             errorMessage: body.errorMessage || null
         }
+    } else if (basename === "admin"){
+        data = {
+            panel: body.panel || 'table-groups.html',
+            data: body.data || []
+        }
     }
 
     return [

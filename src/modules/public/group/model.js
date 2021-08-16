@@ -1,4 +1,5 @@
-const { fetch, fetchAll } = require('../../lib/postgres.js')
+const { fetch, fetchAll } = require('../../../lib/postgres.js');
+
 const { GROUPS } = require('./query.js')
 
 

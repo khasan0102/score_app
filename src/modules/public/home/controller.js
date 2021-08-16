@@ -1,4 +1,4 @@
-const htmlController = require("../../lib/htmlController.js")
+const htmlController = require("../../../lib/htmlController");
 
 
 const GET = async (req, res) => {

@@ -1,4 +1,4 @@
-const { fetchAll } = require('../../lib/postgres.js');
+const { fetchAll } = require('../../../lib/postgres.js');
 const { STUDENTS, STUDENT_SCORE, STUDENT_SEARCH } = require('./query.js');
 
 const students = async ({ groupId = 0, teacherId = 0 }, { groups, role }) => {

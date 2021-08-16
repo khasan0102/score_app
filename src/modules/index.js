@@ -1,13 +1,6 @@
-const homeRouter = require('./home')
-const authRouter = require('./auth')
-const groupRouter = require('./group')
-const studentRouter = require('./student')
-const staffRouter = require('./staff')
+const publicModules = require("./public")
+const adminModule = require("./admin");
 
 module.exports = [
-	authRouter,
-	homeRouter,
-	studentRouter,
-	groupRouter,
-	staffRouter,
-]
+    ...publicModules, ...adminModule
+];

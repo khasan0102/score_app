@@ -1,7 +1,5 @@
-const { fetchAll } = require('../../lib/postgres.js')
-const { TEACHERS, ASSISTANTS } = require('./query.js')
-
-
+const { fetchAll } = require('../../../lib/postgres.js');
+const { TEACHERS, ASSISTANTS } = require('./query.js');
 
 const teachers = async ({ groups, role }) => {
 	let teachers = await fetchAll(TEACHERS, groups);

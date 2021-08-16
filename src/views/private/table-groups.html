@@ -3,6 +3,10 @@
 <link rel="stylesheet" href="/css/private/table.css">
 
 <!-- html -->
+<% var data %>
+<% if (!data) {%>
+	data = [];
+<% } %>
 <div class="wrapper-admin">
 	<div class="top">
 		<a href="#">
@@ -11,38 +15,15 @@
 	</div>
 	<div class="main">
 		<ul>
-			<li>
-				<span>Web dasturlash</span>
-				<div class="options">
-					<button class="del"></button>
-					<button class="edit"><button>
-				</div>
-			</li>
-
-			<li>
-				<span>Fronted</span>
-				<div class="options">
-					<button class="del"></button>
-					<button class="edit"><button>
-				</div>
-			</li>
-
-			<li>
-				<span>Backend</span>
-				<div class="options">
-					<button class="del"></button>
-					<button class="edit"><button>
-				</div>
-			</li>
-
-			<li>
-				<span>Go lang</span>
-				<div class="options">
-					<button class="del"></button>
-					<button class="edit"><button>
-				</div>
-			</li>
-			
+			<% for (let el of data) {%>
+				<li>
+					<span><%= el.group_name %></span>
+					<div class="options">
+						<button data-id="<%=el.id %>" class="del"></button>
+						<button data-id="<%=el.id %>" class="edit"><button>
+					</div>
+				</li>
+			<% } %>			
 		</ul>
 	</div>
 	<div class="bottom">
