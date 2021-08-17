@@ -3,8 +3,15 @@ const GROUPS = `
         group_name,
         group_id
     FROM groups
+    OFFSET $1 FETCH FIRST $2 ROWS ONLY
 `;
 
+const COUNT_GROUPS = `
+    SELECT 
+        COUNT(group_id)
+    FROM groups
+`
+
 module.exports = {
-    GROUPS
+    GROUPS, COUNT_GROUPS
 }

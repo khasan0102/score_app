@@ -214,3 +214,6 @@ UPDATE users
 FROM users u
 INNER JOIN teachers t ON t.user_id = u.user_id
 WHERE t.teacher_id = 1;
+
+
+
