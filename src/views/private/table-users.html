@@ -3,23 +3,34 @@
 <link rel="stylesheet" href="/css/private/table.css">
 
 <!-- html -->
-<% var data %>
+<% var data = data || {} %>
+<% var { table } = data %>
 <% var startPage = +data.page - 1 > 0 ? +data.page - 1 : 1%>
 <% var endPage = +data.page + 1 >= +data.pages  ? +data.pages :  +data.page + 1%>
 <div class="wrapper-admin">
 	<div class="top">
+		<span><%= data.heading %></span>
 		<a href="#">
 			<img src="/img/add-orange.svg" alt="add-icon">
 		</a>
 	</div>
 	<div class="main">
 		<ul>
-			<% for (let el of data.groups) {%>
+			<% let keys = Object.keys(table) %>
+			<% for (let index = 0; index < table[keys[0]].length; index++) { %>
 				<li>
-					<span><%= el.group_name %></span>
+				    <% let ind = true %>
+					<% for (let i = 0; i < keys.length; i++) {%>
+						<% let type = table[keys[i]][index].type %>
+						<% if(type == 'link') {%>
+							<div class="name"><a href="<%=  %>"><%= table[keys[i]][index].text %></a></div>
+						<% } else { %>
+							<div class="name"><span><%= table[keys[i]][index].text %> %></span></div>
+						<% } %>
+					<% }%>
 					<div class="options">
-						<button data-id="<%= el.group_id %>" class="del"></button>
-						<button data-id="<%= el.group_id %>" class="edit"><button>
+						<button data-id="<%= 1 %>" class="del"></button>
+						<button data-id="<%= 1 %>" class="edit"><button>
 					</div>
 				</li>
 			<% } %>			
@@ -27,7 +38,7 @@
 	</div>
 	<div class="bottom">
 		<div>
-			<a href="/admin/groups?page=<%= startPage %>">
+			<a href="/admin<%= data.path %>&page=<%= startPage %>">
 				<button id="prev"></button>
 			</a>
 			<span>
@@ -35,7 +46,7 @@
 					/
 				<span id="totalPages"><%= data.pages %></span>
 			</span>
-			<a href="/admin/groups?page=<%= endPage%>">
+			<a href="/admin<%= data.path %>&page=<%= endPage %>">
 				<button id="next"></button>
 			</a>
 		</div>

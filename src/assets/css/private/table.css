@@ -66,10 +66,19 @@
 	font-weight: bold;
 }
 
+.wrapper-admin .main ul li a{
+	color: black;
+}
+
+
+.wrapper-admin .main ul li a:hover {
+	color: rgb(241, 132, 30);
+	transition: color 0.3s ease;
+}
 .wrapper-admin .main ul .options {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-between;	
 }
 
 .wrapper-admin .main ul button {
