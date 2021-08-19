@@ -209,11 +209,47 @@ INNER JOIN users u ON t.user_id = u.user_id;
 
 
 
-UPDATE users
- SET user_first_name = 'Yunus'
+SELECT 
+	u.user_id
 FROM users u
-INNER JOIN teachers t ON t.user_id = u.user_id
-WHERE t.teacher_id = 1;
+NATURAL JOIN teachers t
+WHERE t.teacher_id = 2;
 
 
+UPDATA users SET
+	user_first_name = 'Nodir'
+FROM users
+INNER JOIN users u ON u.user_id = t.teacher_id
+WHERE t.teacher_id = 2;
 
+
+UPDATE users SET 
+	first_name = 'Alisher'
+FROM (
+	SELECT 
+		user_id 
+	FROM users u
+	NATURAL JOIN teachers t
+	WHERE teacher_id = 2
+) t
+WHERE t.user_id = users.user_id;
+
+--intarface WITH
+
+WITH t AS (
+	SELECT 
+		user_id 
+	FROM users 
+	NATURAL JOIN teachers t
+	WHERE teacher_id = 2
+) UPDATE users SET 
+	first_name = 'Alisher'
+FROM t 
+WHERE t.user_id = users.user_id;
+
+SELECT 
+	user_id,
+	user_first_name,
+	user_last_name
+FROM 
+	users;
