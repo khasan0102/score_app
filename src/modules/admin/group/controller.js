@@ -5,11 +5,20 @@ const GET = async (req, res) => {
 		...htmlController(
             req.userInfo, 
             await model.groups(req.query, req.userInfo),
-            { headaer: "private/header.html"}
+            { header: "private/header.html"}
 		)
 	)
 }
 
+const DELETE = async (req, res) => {
+     let deleted = await model.remove(req.body, req.userInfo);
+	 if(deleted) {
+		res.status(200).json({ status: 204, message: "The group deleted!"})
+	 } else {
+		res.status(400).json({ status: 400, message: "Something went wrong!"})
+	}
+}
+
 module.exports = {
-	GET
+	GET, DELETE
 }

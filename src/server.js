@@ -14,6 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 // third-party and build-in middlewares
 app.use( express.static(path.join(__dirname, 'assets')) );
 app.use( express.urlencoded({ extended: true }) );
+app.use( express.json() );
 app.use( cookie() );
 app.use( auth );
 

@@ -22,8 +22,8 @@
 				<li>
 					<span><%= el.group_name %></span>
 					<div class="options">
-						<button data-id="<%=el.id %>" class="del"></button>
-						<button data-id="<%=el.id %>" class="edit"><button>
+						<button data-id="<%= el.group_id %>" class="del"></button>
+						<button data-id="<%= el.group_id %>" class="edit"><button>
 					</div>
 				</li>
 			<% } %>			
@@ -45,3 +45,5 @@
 		</div>
 	</div>
 </div>
+
+<script src="/js/delete_groups.js"></script>

@@ -1,4 +1,7 @@
+\c postgres
+DROP DATABASE IF EXISTS score_db;
 CREATE DATABASE score_db;
+\c score_db;
 CREATE EXTENSION pgcrypto;
 
 /*
@@ -44,12 +47,12 @@ CREATE TABLE groups (
 );
 
 CREATE TABLE group_students (
-	group_id int not null references groups(group_id),
+	group_id int not null references groups(group_id) ON DELETE CASCADE,
 	student_id int not null references students(student_id)
 );
 
 CREATE TABLE group_assistants (
-	group_id int not null references groups(group_id),
+	group_id int not null references groups(group_id) ON DELETE CASCADE,
 	assistant_id int not null references assistants(assistant_id)
 );
 
@@ -58,7 +61,7 @@ CREATE TABLE scores (
 	score_desc text,
 	score_value int not null,
 	student_id int not null references students(student_id),
-	group_id int not null references groups(group_id),
+	group_id int not null references groups(group_id) ON DELETE CASCADE,
 	score_created_at timestamptz default current_timestamp
 );
 
