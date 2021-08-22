@@ -19,6 +19,16 @@ const DELETE = async (req, res) => {
 	}
 }
 
+const SCORE_GET = async (req, res) => {
+	res.render(
+		...htmlController(
+            req.userInfo, 
+            await model.scores(req.params, req.query),
+            { header: "private/header.html"}
+		)
+	)
+}
+
 module.exports = {
-	GET, DELETE
+	GET, DELETE, SCORE_GET
 }

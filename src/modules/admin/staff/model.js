@@ -11,7 +11,7 @@ const teachers = async ({ page = 1 }) => {
     if(page < 1) page = 1;
 	let teachers = await fetchAll( TEACHERS, (page - 1) * limit, limit );
     let table = {
-        username : teachers.map(el => ({text: el.full_name, link: `/students?teacherId=${el.teacher_id}`, type: 'link', id: el.teacher_id})),
+        username : teachers.map(el => ({text: el.full_name, link: `/admin/students?teacherId=${el.teacher_id}`, type: 'link', id: el.teacher_id})),
         phoneNumber: teachers.map(el => ({text: el.phone_number, link: `tel:+${el.phone_number}`, type: 'link'})),
     }
     return {
@@ -26,7 +26,6 @@ const teachers = async ({ page = 1 }) => {
         }
     }
 }
-
 
 
 const assistants = async ({ page = 1, groupId = 0 }) => {

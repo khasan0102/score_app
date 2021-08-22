@@ -16,7 +16,7 @@
 		<ul>
 			<% for (let el of data.groups) {%>
 				<li>
-					<span><%= el.group_name %></span>
+					<a href="/admin/students?groupId=<%= el.group_id %>"><%= el.group_name %></a>
 					<div class="options">
 						<button data-id="<%= el.group_id %>" class="del"></button>
 						<button data-id="<%= el.group_id %>" class="edit"><button>

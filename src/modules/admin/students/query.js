@@ -45,6 +45,41 @@ const STUDENTS = `
     OFFSET $3 FETCH FIRST $4 ROWS ONLY;
 `;
 
+const COUNT_SCORES = `
+    SELECT 
+        COUNT(t.score_id)
+    FROM (
+        SELECT DISTINCT ON (s.score_value)
+          s.score_id
+        FROM scores s
+        INNER JOIN students st ON st.student_id = s.student_id
+        INNER JOIN users u ON u.user_id = st.user_id
+        LEFT JOIN groups g ON g.group_id = s.group_id
+        WHERE s.student_id = $1  AND
+        s.group_id = $2
+        ORDER BY s.score_value
+    ) t
+`;
+
+
+const STUDENT_SCORES = `
+    SELECT DISTINCT ON (s.score_value)
+        s.score_id,
+        s.score_desc,
+        s.score_value,
+        TO_CHAR(s.score_created_at, 'yyyy-MM-dd HH24:MI:SS') as score_created_at,
+        u.user_first_name || ' ' || u.user_last_name AS student_full_name,
+        g.group_name
+    FROM scores s
+    INNER JOIN students st ON st.student_id = s.student_id
+    INNER JOIN users u ON u.user_id = st.user_id
+    LEFT JOIN groups g ON g.group_id = s.group_id
+    WHERE s.student_id = $1 AND 
+    s.group_id = $2
+    ORDER BY s.score_value
+    OFFSET $3 FETCH FIRST $4 ROWS ONLY
+`;
+
 module.exports = {
-    COUNT_STUDENTS, STUDENTS
+    COUNT_STUDENTS, STUDENTS, COUNT_SCORES, STUDENT_SCORES
 };
