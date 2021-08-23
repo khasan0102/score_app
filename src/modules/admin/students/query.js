@@ -82,6 +82,26 @@ const STUDENT_SCORES = `
     OFFSET $3 FETCH FIRST $4 ROWS ONLY
 `;
 
+const DELETE_STUDENT = `
+    DELETE FROM 
+        group_students gs
+    WHERE 
+    CASE
+        WHEN $2 > 0 THEN gs.group_id = $2
+        ELSE TRUE
+    END AND
+    gs.student_id = $1
+    RETURNING *;
+`;
+
+const DELETE_SCORE = `
+    DELETE FROM 
+        scores s
+    WHERE 
+        s.score_id = $1
+    RETURNING *
+`;
+
 module.exports = {
-    COUNT_STUDENTS, STUDENTS, COUNT_SCORES, STUDENT_SCORES
+    COUNT_STUDENTS, STUDENTS, COUNT_SCORES, STUDENT_SCORES, DELETE_STUDENT, DELETE_SCORE
 };

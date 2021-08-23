@@ -25,7 +25,7 @@ const students = async ({ groupId = 0, teacherId = 0 }, { groups, role }) => {
 	};
 };
 
-const studentScore = async ({ studentId, groupId },  { groups }) => {
+const studentScore = async ({ studentId, groupId = 0 },  { groups }) => {
 	let scores = await fetchAll(STUDENT_SCORE, 
 		studentId, 
 		groups.includes(+groupId) ? groupId : 0,
@@ -35,7 +35,6 @@ const studentScore = async ({ studentId, groupId },  { groups }) => {
 		'date': scores.map( score => ({ type: 'text', text: score.score_created_at } ) ),
 		'description': scores.map( score => ({ type: 'text', text: score.score_desc } ) ),
 	}
-
 	return {
 		tableName1: 'Student: ' + scores[0].student_full_name,
 		tableName2: 'Group: ' + scores[0].group_name,

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { GET, DELETE, SCORE_GET } = require('./controller.js');
+const { GET, DELETE, SCORE_GET, DELETE_SCORE } = require('./controller.js');
 const studentMiddleware = require("../../../middlewares/studentMiddleware");
 router.use( studentMiddleware );
 
@@ -9,6 +9,6 @@ router.route('/admin/students')
 
 router.route('/admin/students/:groupId/:studentId')
 	.get( SCORE_GET )
-	.delete( DELETE )
+	.delete( DELETE_SCORE )
 	
 module.exports = router

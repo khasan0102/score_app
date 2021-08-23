@@ -9,7 +9,7 @@ const STUDENTS = async (req, res) => {
 
 const STUDENT = async (req, res) => {
 	res.render(
-		...htmlController(req.userInfo, await model.studentScore(req.query, req.userInfo))
+		...htmlController(req.userInfo, await model.studentScore(req.params, req.userInfo))
 	);
 }
 
