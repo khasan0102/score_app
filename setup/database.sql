@@ -43,7 +43,7 @@ CREATE TABLE students (
 CREATE TABLE groups (
 	group_id serial primary key,
 	group_name varchar(32) not null,
-	teacher_id int not null references teachers(teacher_id)
+	teacher_id int not null references teachers(teacher_id) ON DELETE CASCADE
 );
 
 CREATE TABLE group_students (
@@ -53,7 +53,7 @@ CREATE TABLE group_students (
 
 CREATE TABLE group_assistants (
 	group_id int not null references groups(group_id) ON DELETE CASCADE,
-	assistant_id int not null references assistants(assistant_id)
+	assistant_id int not null references assistants(assistant_id) ON DELETE CASCADE
 );
 
 CREATE TABLE scores (

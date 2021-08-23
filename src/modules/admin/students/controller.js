@@ -23,7 +23,7 @@ const SCORE_GET = async (req, res) => {
 	res.render(
 		...htmlController(
             req.userInfo, 
-            await model.scores(req.params, req.query),
+            await model.scores(req.params, req.query, req.userInfo),
             { header: "private/header.html"}
 		)
 	)

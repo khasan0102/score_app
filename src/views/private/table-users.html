@@ -29,8 +29,8 @@
 						<% } %>
 					<% }%>
 					<div class="options">
-						<button data-id="<%= 1 %>" class="del"></button>
-						<button data-id="<%= 1 %>" class="edit"><button>
+						<button data-id="<%= table[keys[0]][index].id %>" data-url='<%= data.url%>' class="del"></button>
+						<button data-id="<%= table[keys[0]][index].id  %>" data-url='<%= data.url%>' class="edit"><button>
 					</div>
 				</li>
 			<% } %>			
@@ -53,4 +53,4 @@
 	</div>
 </div>
 
-<script src="/js/delete_groups.js"></script>
+<script src="/js/delete_users.js"></script>

@@ -1,15 +1,17 @@
 const GROUPS = `
     SELECT 
-        group_name,
-        group_id
-    FROM groups
-    OFFSET $1 FETCH FIRST $2 ROWS ONLY
+        g.group_name,
+        g.group_id
+    FROM groups g
+    WHERE g.group_id = ANY($1)
+    OFFSET $2 FETCH FIRST $3 ROWS ONLY
 `;
 
 const COUNT_GROUPS = `
     SELECT 
-        COUNT(group_id)
-    FROM groups
+        COUNT(g.group_id)
+    FROM groups g
+    WHERE g.group_id = ANY($1)
 `;
 const DELETE_GROUP = `
     DELETE FROM 

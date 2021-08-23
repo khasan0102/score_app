@@ -20,15 +20,24 @@ const ASSISTANT_GET = async (req, res) => {
 	)
 }
 
-const DELETE = async (req, res) => {
-     let deleted = await model.remove(req.body, req.userInfo);
+const ASSISTANT_DELETE = async (req, res) => {
+     let deleted = await model.remove_assistant(req.body, req.userInfo);
 	 if(deleted) {
-		res.status(200).json({ status: 204, message: "The group deleted!"})
+		res.status(200).json({ status: 204, message: "The assistant  deleted!"})
 	 } else {
 		res.status(400).json({ status: 400, message: "Something went wrong!"})
 	}
 }
 
-module.exports = {
-	GET, ASSISTANT_GET
+const TEACHER_DELETE = async (req, res) => {
+	let deleted = await model.remove_teacher(req.body, req.userInfo);
+	if(deleted) {
+	   res.status(200).json({ status: 204, message: "The assistant  deleted!"})
+	} else {
+	   res.status(400).json({ status: 400, message: "Something went wrong!"})
+   }
 }
+
+module.exports = {
+	GET, ASSISTANT_GET, ASSISTANT_DELETE, TEACHER_DELETE
+};
