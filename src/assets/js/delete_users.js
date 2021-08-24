@@ -22,11 +22,10 @@ for(let button of delBtns) {
             });
 
             repsonse = await response.json();
-
             if(response.status == 200) {
                 event.target.parentNode.parentNode.remove();
             } else {
-                alert(response.message)
+                alert("You have problem")
             }
         }
     }

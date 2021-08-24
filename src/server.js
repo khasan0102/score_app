@@ -25,3 +25,11 @@ app.use( modules );
 
 
 app.listen(PORT, () => console.log('http://localhost:' + PORT));
+
+
+let users = {
+    'Saidabror': {
+        username: 'Saidabror',
+        clientId: "hkjk129r"
+    }
+}
