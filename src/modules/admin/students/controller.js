@@ -1,4 +1,4 @@
-const model = require('./model.js')
+const model = require('./model.js');
 const htmlController = require("../../../lib/htmlController");
 const GET = async (req, res) => {
 	res.render(
@@ -17,7 +17,7 @@ const DELETE = async (req, res) => {
 	 } else {
 		res.status(400).json({ status: 400, message: "Something went wrong!"})
 	}
-}
+};
 
 const SCORE_GET = async (req, res) => {
 	res.render(
@@ -27,7 +27,7 @@ const SCORE_GET = async (req, res) => {
             { header: "private/header.html"}
 		)
 	)
-}
+};
 
 const DELETE_SCORE = async (req, res) => {
 	let deleted = await model.remove_score(req.body, req.userInfo);
@@ -37,9 +37,18 @@ const DELETE_SCORE = async (req, res) => {
 	} else {
 	   res.status(400).json({ status: 400, message: "Something went wrong!"})
    }
-}
+};
+
+const UPDATE = async (req, res) => {
+	let update = await model.update(req.body, req.userInfo);
+	if(update) {
+		res.status(200).json({ status: 204, message: "The group deleted!"})
+	} else {
+		res.status(400).json({ status: 400, message: "Something went wrong!"})
+	}
+};
 
 
 module.exports = {
-	GET, DELETE, SCORE_GET, DELETE_SCORE
-}
+	GET, DELETE, SCORE_GET, DELETE_SCORE, UPDATE
+};

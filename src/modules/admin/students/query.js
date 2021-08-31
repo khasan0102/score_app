@@ -102,6 +102,21 @@ const DELETE_SCORE = `
     RETURNING *
 `;
 
+const UPDATE = `
+    UPDATE users SET 
+        first_name = $1
+        user_last_name = $2
+        user_contact = $3
+    FROM (
+        SELECT 
+            user_id 
+        FROM users u
+        NATURAL JOIN students t
+        WHERE teacher_id = $4
+    ) t
+    WHERE t.user_id = users.user_id
+`;
+
 module.exports = {
-    COUNT_STUDENTS, STUDENTS, COUNT_SCORES, STUDENT_SCORES, DELETE_STUDENT, DELETE_SCORE
+    COUNT_STUDENTS, STUDENTS, COUNT_SCORES, STUDENT_SCORES, DELETE_STUDENT, DELETE_SCORE, UPDATE
 };

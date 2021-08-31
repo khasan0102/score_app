@@ -1,6 +1,6 @@
 const { fetch, fetchAll } = require('../../../lib/postgres.js');
 
-const { COUNT_STUDENTS, STUDENTS, COUNT_SCORES, STUDENT_SCORES, DELETE_STUDENT, DELETE_SCORE } = require('./query.js');
+const { COUNT_STUDENTS, STUDENTS, COUNT_SCORES, STUDENT_SCORES, DELETE_STUDENT, DELETE_SCORE, UPDATE } = require('./query.js');
 
 const students = async ({ page = 1, groupId = 0, teacherId = 0 }, { groups }) => {
     page = +page;
@@ -22,7 +22,7 @@ const students = async ({ page = 1, groupId = 0, teacherId = 0 }, { groups }) =>
     let path = '/students?' + (groupId  && teacherId ? `${groupPath}` : teacherId ? `${teacherPath}` : groupId ? `${groupPath}` : '');
     let table = {
         username : students.map(el => ({text: el.full_name, link: `/admin/students/${el.group_id}/${el.student_id}`, type: groupId > 0 ? 'link' : 'text', id: el.student_id, groupId: el.group_id})),
-        phoneNumber: students.map(el => ({text: el.phone_number, link: `tel:+${el.phone_number}`, type: 'link'})),
+        phone: students.map(el => ({text: el.phone_number, link: `tel:+${el.phone_number}`, type: 'link'})),
     }   
 
     return {
@@ -78,6 +78,10 @@ const remove_student = async ({ studentId = 0, groupId = 0 }) => {
 
 const remove_score = async ({ scoreId = 0}) => {
     return await fetch(DELETE_SCORE, scoreId)
+}
+
+const update = async ({ studentId = 0, username, phone}) => {
+
 }
 
 module.exports = {

@@ -1,6 +1,7 @@
 <!-- css -->
 <link rel="stylesheet" href="/css/private/panel.css">
 <link rel="stylesheet" href="/css/private/table.css">
+<link rel="stylesheet" href="/css/private/modal.css">
 
 <!-- html -->
 <% var data = data || {} %>
@@ -23,9 +24,9 @@
 					<% for (let i = 0; i < keys.length; i++) {%>
 						<% let type = table[keys[i]][index].type %>
 						<% if(type == 'link') {%>
-							<div class="name"><a href="<%= table[keys[i]][index].link %>"><%= table[keys[i]][index].text %></a></div>
+							<div class="name" data-name="<%=keys[i] %>"><a href="<%= table[keys[i]][index].link %>"><%= table[keys[i]][index].text %></a></div>
 						<% } else { %>
-							<div class="name"><span><%= table[keys[i]][index].text %> %></span></div>
+							<div class="name" data-name="<%=keys[i] %>"><span><%= table[keys[i]][index].text %> %></span></div>
 						<% } %>
 					<% }%>
 					<div class="options">
@@ -53,4 +54,20 @@
 	</div>
 </div>
 
+<div class="modal modal-hide" id="modal">
+	<form>
+		<header>
+			<h2>Modal Title</h2>
+		</header>
+		<main id="inputs">
+			
+		</main>
+	   <footer>
+		   <button type="button" class="close" id="close">Close</button>
+		   <button type="button" class="send">Send</button>
+	   </footer>
+	</form>
+</div>
+
 <script src="/js/delete_users.js"></script>
+<script src="/js/update_users.js"></script>
