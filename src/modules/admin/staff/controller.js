@@ -38,6 +38,24 @@ const TEACHER_DELETE = async (req, res) => {
    }
 }
 
+const UPDATE_TEACHER = async (req, res) => {
+	let update = await model.update_teacher(req.body, req.userInfo) || {};
+	if(update.isTrue) {
+		res.status(200).json(update)
+	} else {
+		res.status(400).json(update)
+	}
+};
+
+const UPDATE_ASSISTANT = async (req, res) => {
+	let update = await model.update_assistant(req.body, req.userInfo) || {};
+	if(update.isTrue) {
+		res.status(200).json(update)
+	} else {
+		res.status(400).json(update)
+	}
+};
+
 module.exports = {
-	GET, ASSISTANT_GET, ASSISTANT_DELETE, TEACHER_DELETE
+	GET, ASSISTANT_GET, ASSISTANT_DELETE, TEACHER_DELETE, UPDATE_TEACHER, UPDATE_ASSISTANT
 };

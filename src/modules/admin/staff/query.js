@@ -82,6 +82,48 @@ const DELETE_TEACHER = `
     RETURNING * 
 `;
 
+
+const UPDATE_TEACHER = `
+    UPDATE users SET 
+        user_first_name = $1,
+        user_last_name = $2,
+        user_contact = $3
+    FROM (
+        SELECT 
+            user_id 
+        FROM users u
+        NATURAL JOIN teachers t
+        WHERE teacher_id = $4
+    ) t
+    WHERE t.user_id = users.user_id
+    RETURNING *
+`;
+
+
+const UPDATE_ASSISTANT = `
+    UPDATE users SET 
+        user_first_name = $1,
+        user_last_name = $2,
+        user_contact = $3
+    FROM (
+        SELECT 
+            user_id 
+        FROM users u
+        NATURAL JOIN assistants t
+        WHERE assistant_id = $4
+    ) t
+    WHERE t.user_id = users.user_id
+    RETURNING *
+`;
+
+
 module.exports = {
-    TEACHERS_COUNT, TEACHERS, ASSISTANT_COUNT, ASSISTANTS, DELETE_ASSISTANT, DELETE_TEACHER
+    TEACHERS_COUNT, 
+    TEACHERS, 
+    ASSISTANT_COUNT, 
+    ASSISTANTS, 
+    DELETE_ASSISTANT, 
+    DELETE_TEACHER, 
+    UPDATE_TEACHER,
+    UPDATE_ASSISTANT
 };
