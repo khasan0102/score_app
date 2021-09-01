@@ -1,7 +1,7 @@
 <!-- css -->
 <link rel="stylesheet" href="/css/private/panel.css">
 <link rel="stylesheet" href="/css/private/table.css">
-
+<link rel="stylesheet" href="/css/private/modal.css">
 <!-- html -->
 <% var data = data || {} %>
 <% var { table } = data %>
@@ -9,7 +9,7 @@
 <% var endPage = +data.page + 1 >= +data.pages  ? +data.pages :  +data.page + 1%>
 <div class="wrapper-admin">
 	<div class="top">
-		<span><%= data.heading %></span>
+		<span id="heading"><%= data.heading %></span>
 		<a href="#">
 			<img src="/img/add-orange.svg" alt="add-icon">
 		</a>
@@ -23,9 +23,9 @@
 					<% for (let i = 0; i < keys.length; i++) {%>
 						<% let type = table[keys[i]][index].type %>
 						<% if(type == 'link') {%>
-							<div class="name"><a href="<%= table[keys[i]][index].link %>"><%= table[keys[i]][index].text %></a></div>
+							<div class="name" data-name="<%=keys[i] %>"><a href="<%= table[keys[i]][index].link %>"><%= table[keys[i]][index].text %></a></div>
 						<% } else { %>
-							<div class="name"><span><%= table[keys[i]][index].text %> %></span></div>
+							<div class="name" data-name="<%=keys[i] %>"><span><%= table[keys[i]][index].text %> %></span></div>
 						<% } %>
 					<% }%>
 					<div class="options">
@@ -53,4 +53,20 @@
 	</div>
 </div>
 
+<div class="modal modal-hide" id="modal">
+	<form>
+		<header>
+			<h2 id="modal-heading">Modal Title</h2>
+		</header>
+		<span id='error'></span>
+		<main id="inputs">
+		</main>
+	   <footer>
+		   <button type="button" class="close" id="close">Close</button>
+		   <button type="button" class="send" id="send">Send</button>
+	   </footer>
+	</form>
+</div>
+
 <script src="/js/delete_score.js"></script>
+<script src="/js/update_score.js"></script>

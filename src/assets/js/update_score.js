@@ -13,6 +13,7 @@ for(let el of editBtns) {
                 elements.push(el)
             }
         }
+        elements.pop()
         renderInputs(elements);
     }
 }
@@ -53,14 +54,14 @@ sendBtn.onclick = async (event) => {
     let inputsBox = document.querySelector('#inputs');
     const inputs = inputsBox.querySelectorAll('input');
     let obj = {};
+    let path = window.location.pathname.split('/');
+    let url = '/admin/students/' + path[[3]] + `/${path[4]}`;
 
     for(let el of inputs) {
         obj[el.id] = el.value;
     }
-    
-    let url = event.target.dataset.url;
-    obj.id = +event.target.dataset.id;
-    
+
+    obj.id = event.target.dataset.id;
 
     let response = await fetch(url, {
         method: 'PUT',
@@ -69,37 +70,4 @@ sendBtn.onclick = async (event) => {
         },
         body: JSON.stringify(obj)
     });
-
-    response = await response.json();
-
-    if(response.isTrue) {
-        let modal = document.querySelector('#modal')
-        inputsBox.innerHTML = null;
-        let elements = [];
-        for(let btn of editBtns) {
-            if(+btn.dataset.id === obj.id) {
-                let childs = btn.parentNode.parentNode.childNodes;
-                for(let el of childs) {
-                    if(el.className == 'name'){
-                        elements.push(el)
-                    }
-                }
-            }
-        }
-
-        for(let i = 0; i < inputs.length; i++) {
-            elements[i].childNodes[0].textContent = inputs[i].value;
-        }
-
-        modal.classList.add('modal-hide');
-        alert(response.message);
-
-    }else {
-        errorSpan.textContent = response.message;
-        errorSpan.style.paddingTop = '10px';
-        inputsBox.style.paddingBottom = '20px'
-    }
-
 }
-
-

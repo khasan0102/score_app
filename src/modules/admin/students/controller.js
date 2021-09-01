@@ -30,7 +30,7 @@ const SCORE_GET = async (req, res) => {
 };
 
 const DELETE_SCORE = async (req, res) => {
-	let deleted = await model.remove_score(req.body, req.userInfo);
+	let deleted = await model.remove_score(req.body, req.params, req.userInfo);
 	console.log(deleted)
 	if(deleted) {
 	   res.status(200).json({ status: 204, message: "The group deleted!"})

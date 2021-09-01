@@ -98,7 +98,7 @@ const DELETE_SCORE = `
     DELETE FROM 
         scores s
     WHERE 
-        s.score_id = $1
+        s.score_id = $1 AND s.group_id = $2 AND s.student_id = $3
     RETURNING *
 `;
 

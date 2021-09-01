@@ -76,8 +76,8 @@ const remove_student = async ({ studentId = 0, groupId = 0 }) => {
     return await fetch(DELETE_STUDENT, studentId, groupId)
 };
 
-const remove_score = async ({ scoreId = 0}) => {
-    return await fetch(DELETE_SCORE, scoreId)
+const remove_score = async ({ scoreId = 0}, { groupId = 0, studentId = 0}) => {
+    return await fetch(DELETE_SCORE, scoreId, groupId, studentId);
 };
 
 const update = async (body) => {
