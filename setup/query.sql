@@ -253,7 +253,3 @@ SELECT
 	user_last_name
 FROM 
 	users;
-
-
-
-

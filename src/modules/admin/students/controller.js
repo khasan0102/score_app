@@ -40,11 +40,11 @@ const DELETE_SCORE = async (req, res) => {
 };
 
 const UPDATE = async (req, res) => {
-	let update = await model.update(req.body, req.userInfo);
-	if(update) {
-		res.status(200).json({ status: 204, message: "The group deleted!"})
+	let update = await model.update(req.body, req.userInfo) || {};
+	if(update.isTrue) {
+		res.status(200).json(update)
 	} else {
-		res.status(400).json({ status: 400, message: "Something went wrong!"})
+		res.status(400).json(update)
 	}
 };
 

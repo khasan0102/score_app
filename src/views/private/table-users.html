@@ -10,7 +10,7 @@
 <% var endPage = +data.page + 1 >= +data.pages  ? +data.pages :  +data.page + 1%>
 <div class="wrapper-admin">
 	<div class="top">
-		<span><%= data.heading %></span>
+		<span id="heading"><%= data.heading %></span>
 		<a href="#">
 			<img src="/img/add-orange.svg" alt="add-icon">
 		</a>
@@ -57,14 +57,14 @@
 <div class="modal modal-hide" id="modal">
 	<form>
 		<header>
-			<h2>Modal Title</h2>
+			<h2 id="modal-heading">Modal Title</h2>
 		</header>
+		<span id='error'></span>
 		<main id="inputs">
-			
 		</main>
 	   <footer>
 		   <button type="button" class="close" id="close">Close</button>
-		   <button type="button" class="send">Send</button>
+		   <button type="button" class="send" id="send">Send</button>
 	   </footer>
 	</form>
 </div>

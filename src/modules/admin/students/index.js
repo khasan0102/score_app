@@ -6,7 +6,7 @@ router.use( studentMiddleware );
 
 router.route('/admin/students')
 	.get( GET )
-	.post( UPDATE )
+	.put( UPDATE )
 	.delete( deleteMiddleware, DELETE )
 
 router.route('/admin/students/:groupId/:studentId')

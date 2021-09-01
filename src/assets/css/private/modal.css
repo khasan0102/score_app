@@ -42,7 +42,8 @@
     padding: 10px 15px;
     display: flex;
     flex-direction: column;
-    border-bottom: 0.1px solid #0c0c0c;
+    border-bottom: 0.1px solid #cecece;
+    color: white;
 }
 
 
@@ -105,4 +106,10 @@
 .modal form footer .send:hover {
     background-color: #fd8f00;
     transition: background-color 0.3s ease;
+}
+
+#error {
+    text-align: center;
+    font-size: 18px;
+    color: red;
 }
