@@ -26,6 +26,10 @@ const remove = async ({ groupId }) => {
     return await fetch(DELETE_GROUP, groupId);
 }
 
+const update = async ({ groupId, groupName}) => {
+    console.log(groupid, groupName);
+}
+
 module.exports = {
-	groups, remove
+	groups, remove, update
 } 
