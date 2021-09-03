@@ -49,6 +49,15 @@ const UPDATE = async (req, res) => {
 };
 
 
+const UPDATE_SCORE = async (req, res) => {
+	let update = await model.update_score(req.body, req.params) || {};
+	if(update.isTrue) {
+		res.status(200).json(update)
+	} else {
+		res.status(400).json(update)
+	}
+};
+
 module.exports = {
-	GET, DELETE, SCORE_GET, DELETE_SCORE, UPDATE
+	GET, DELETE, SCORE_GET, DELETE_SCORE, UPDATE, UPDATE_SCORE
 };

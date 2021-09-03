@@ -70,4 +70,33 @@ sendBtn.onclick = async (event) => {
         },
         body: JSON.stringify(obj)
     });
+
+    response = await response.json();
+
+    if(response.isTrue) {
+        let modal = document.querySelector('#modal')
+        inputsBox.innerHTML = null;
+        let elements = [];
+        for(let btn of editBtns) {
+            if(btn.dataset.id == obj.id) {
+                let childs = btn.parentNode.parentNode.childNodes;
+                for(let el of childs) {
+                    if(el.className == 'name'){
+                        elements.push(el)
+                    }
+                }
+            }
+        }
+
+        for(let i = 0; i < response.data.length; i++) {
+            elements[i].childNodes[0].textContent = response.data[i]
+        }
+
+        modal.classList.add('modal-hide');
+        alert(response.message);
+    }else {
+        errorSpan.textContent = response.message;
+        errorSpan.style.paddingTop = '10px';
+        inputsBox.style.paddingBottom = '20px'
+    }
 }

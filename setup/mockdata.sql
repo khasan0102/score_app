@@ -8,8 +8,7 @@
 		user_age, 
 		user_role  
 	) VALUES 
-	-- root admin
-	('root', 'root', 'root', crypt('root', gen_salt('bf')), '998941023656', 1, 25, 1),
+	'root', 'root', 'root', crypt('root', gen_salt('bf')), '998941023656', 1, 25, 1),
 	-- teachers
 	('Yunus', 'Yusupov', 'tanqidchi', crypt('1111', gen_salt('bf')), '998971023656', 1, 19, 2),
 	('MuhammadJavohir', 'Suratov', 'jewel', crypt('1111', gen_salt('bf')), '998945623478', 1, 26, 2),
@@ -67,7 +66,7 @@
 	INSERT INTO group_students ( group_id, student_id ) VALUES ( 4, 1 );
 
 	INSERT INTO scores ( group_id, student_id, score_value, score_desc ) VALUES
-	( 1, 5, 25, 'yaxshi'),
+	(1, 5, 25, 'yaxshi'),
 	( 1, 5, 60, 'zor'),
 	( 1, 5, 80, 'alo'),
 	( 1, 4, 10, 'yomon'),

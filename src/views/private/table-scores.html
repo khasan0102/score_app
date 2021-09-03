@@ -21,12 +21,7 @@
 				<li>
 				    <% let ind = true %>
 					<% for (let i = 0; i < keys.length; i++) {%>
-						<% let type = table[keys[i]][index].type %>
-						<% if(type == 'link') {%>
-							<div class="name" data-name="<%=keys[i] %>"><a href="<%= table[keys[i]][index].link %>"><%= table[keys[i]][index].text %></a></div>
-						<% } else { %>
-							<div class="name" data-name="<%=keys[i] %>"><span><%= table[keys[i]][index].text %> %></span></div>
-						<% } %>
+						<div class="name" data-name="<%=keys[i] %>"><span><%= table[keys[i]][index].text %></span></div>
 					<% }%>
 					<div class="options">
 						<button data-id="<%= table[keys[0]][index].id %>" data-group-id="<%= table[keys[0]][index].groupId %>" data-url='<%= data.url%>' class="del"></button>

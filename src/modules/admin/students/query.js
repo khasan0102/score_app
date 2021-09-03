@@ -98,7 +98,7 @@ const DELETE_SCORE = `
     DELETE FROM 
         scores s
     WHERE 
-        s.score_id = $1 AND s.group_id = $2 AND s.student_id = $3
+        s.score_id = $1 AND s.student_id = $2 AND s.group_id = $3
     RETURNING *
 `;
 
@@ -118,6 +118,28 @@ const UPDATE = `
     RETURNING *
 `;
 
+
+
+const UPDATE_SCORE = `
+    UPDATE scores  SET
+        score_value = $1,
+        score_desc = $2,
+        score_created_at = CURRENT_TIMESTAMP
+    WHERE 
+        score_id = $3 AND student_id = $4 AND group_id = $5
+    RETURNING 
+        score_desc,
+        score_value,
+        TO_CHAR(score_created_at, 'yyyy-MM-dd HH24:MI:SS') as time
+`;
+
 module.exports = {
-    COUNT_STUDENTS, STUDENTS, COUNT_SCORES, STUDENT_SCORES, DELETE_STUDENT, DELETE_SCORE, UPDATE
+    COUNT_STUDENTS, 
+    STUDENTS, 
+    COUNT_SCORES, 
+    STUDENT_SCORES, 
+    DELETE_STUDENT, 
+    DELETE_SCORE, 
+    UPDATE, 
+    UPDATE_SCORE
 };

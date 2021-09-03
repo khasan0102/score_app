@@ -15,6 +15,15 @@ const userUpdateValidation = new Joi.object({
     id: Joi.number().required()
 });
 
+
+
+const scoreUpdateValidation = new Joi.object({
+    id: Joi.number().required().error(new Error('Id is incoored')),
+    scoreValue: Joi.number().min(0).max(100).required().error( new Error("Score value is incorred")),
+    description: Joi.string().min(3).required().error(new Error('Description is incorred!'))
+});
+
 module.exports = {
-    userUpdateValidation
+    userUpdateValidation,
+    scoreUpdateValidation
 }

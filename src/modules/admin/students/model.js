@@ -1,6 +1,6 @@
 const { fetch, fetchAll } = require('../../../lib/postgres.js');
-const { userUpdateValidation } = require("../../../validations")
-const { COUNT_STUDENTS, STUDENTS, COUNT_SCORES, STUDENT_SCORES, DELETE_STUDENT, DELETE_SCORE, UPDATE } = require('./query.js');
+const { userUpdateValidation, scoreUpdateValidation } = require("../../../validations")
+const { COUNT_STUDENTS, STUDENTS, COUNT_SCORES, STUDENT_SCORES, DELETE_STUDENT, DELETE_SCORE, UPDATE, UPDATE_SCORE } = require('./query.js');
 
 const students = async ({ page = 1, groupId = 0, teacherId = 0 }, { groups }) => {
     page = +page;
@@ -77,7 +77,7 @@ const remove_student = async ({ studentId = 0, groupId = 0 }) => {
 };
 
 const remove_score = async ({ scoreId = 0}, { groupId = 0, studentId = 0}) => {
-    return await fetch(DELETE_SCORE, scoreId, groupId, studentId);
+    return await fetch(DELETE_SCORE, scoreId, +groupId, +studentId);
 };
 
 const update = async (body) => {
@@ -108,6 +108,33 @@ const update = async (body) => {
     }
 };
 
+
+
+
+const update_score = async (body, { groupId, studentId }) => {
+    try {
+        let { scoreValue, description, id } = body;
+        let data = await scoreUpdateValidation.validateAsync({scoreValue: +scoreValue, description, id: +id});
+        let updated = await fetch(UPDATE_SCORE, data.scoreValue, description, data.id, +groupId, +studentId);
+        if(!updated)
+            throw 'Update error';
+        return {
+            isTrue: true,
+            status: 201,
+            message: 'Score successfully updated!',
+            data: [updated.score_value, updated.score_desc, updated.time]
+        }
+    } catch (e) {
+        if(typeof e === 'object')
+            e = e.message
+        return {
+            status: 400,
+            isTrue: false,
+            message: e
+        }
+    }
+}
+
 module.exports = {
-	students, scores, remove_student, remove_score, update
+	students, scores, remove_student, remove_score, update, update_score
 }; 
