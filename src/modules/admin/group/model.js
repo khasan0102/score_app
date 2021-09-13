@@ -27,7 +27,11 @@ const remove = async ({ groupId }) => {
 }
 
 const update = async ({ groupId, groupName}) => {
-    console.log(groupid, groupName);
+    try {
+
+    } catch (e) {
+        
+    }
 }
 
 module.exports = {

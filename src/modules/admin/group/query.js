@@ -13,6 +13,7 @@ const COUNT_GROUPS = `
     FROM groups g
     WHERE g.group_id = ANY($1)
 `;
+
 const DELETE_GROUP = `
     DELETE FROM 
         groups
@@ -21,6 +22,14 @@ const DELETE_GROUP = `
     RETURNING *;
 `;
 
+
+const CHECK_GROUP_NAME = `
+    SELECT 
+        g.group_name
+    FROM groups g
+    WHERE g.group_name = $1
+`
+
 module.exports = {
-    GROUPS, COUNT_GROUPS, DELETE_GROUP
+    GROUPS, COUNT_GROUPS, DELETE_GROUP, CHECK_GROUP_NAME
 };
